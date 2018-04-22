@@ -1,30 +1,5 @@
-const express = require('express');
-const mongoose = require('mongoose');
-
-mongoose
-  .connect('mongodb://localhost/authdb')
-  .then(() => {
-    console.log('\n=== connected to MongoDB ===\n');
-  })
-  .catch(err => console.log('database connection failed', err));
-
-const server = express();
-
-// Custum Middleware
-const greeter = function(req, res, next) {
-  req.hello = `Hello Jeremy`;
-  next();
-}
-
-server.use(express.json());
-server.use(greeter)
-
-server.get('/', (req, res) => {
-  res.status(200).json({ api: 'running!', greeting: req.hello });
-});
-
-server.listen(5000, () => console.log('\n=== api on port 5000 ===\n'));
-
+// Ryan, I believe, might have used create-react-app...or something, but at any
+// rate, you need to use app.js as your server.
 
 // const bodyParser = require('body-parser');
 // const express = require('express');
