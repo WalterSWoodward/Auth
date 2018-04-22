@@ -28,7 +28,8 @@ server.use(
   session({
     secret: "you shall not pass!!",
     cookie: { maxAge: 1 * 24 * 60 * 60 * 1000 },
-    secure: false
+    secure: false,
+    name: 'auth'
   })
 );
 
