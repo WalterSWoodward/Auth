@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+// UserSchema contains all the build parameters for which an instance 
+// (which becomes a document) on the model (contains all instances) 
+// will be created by. 
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -19,6 +22,8 @@ const UserSchema = new mongoose.Schema({
 // remember this is STILL middleware (noticed "next")
 // This HAS to be a regular function, not arrow, b/c
 // we need to use 'this'
+
+// BYCRYPT - runs before document is saved to the model/database
 UserSchema.pre('save', function(next) {
   console.log('pre save hook');
   // 'this' refers to the instance of the schema with a password
