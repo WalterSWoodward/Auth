@@ -33,19 +33,6 @@ server.use(
   })
 );
 
-// authenticate('Jeremy') is an example of GLOBALLY expressed express middleware
-// server.use(authenticate('Jeremy'))
-
-// server.get('/', (req, res) => {
-//   res.status(200).json({ api: 'running!', greeting: req.hello });
-// });
-
-// authenticate() middleware, now placed here, now LOCALLY expressed only at '/greet/'
-
-// server.get('/greet', authenticate('Jeremy'), (req, res) => {
-//     res.status(200).json({ api: 'running!', greeting: req.hello });
-//   });
-
 server.post("/login", (req, res) => {
   const { username, password } = req.body;
   User.findOne({ username })

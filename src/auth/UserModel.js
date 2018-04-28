@@ -23,7 +23,9 @@ UserSchema.pre('save', function(next) {
   console.log('pre save hook');
   // 'this' refers to the instance of the schema with a password
   // in it.  16.5 rounds.
-  console.log('this.password', this.password)
+  // this.password never gets saved to the database.  It is
+  // hi-jacked here and hashed by bcrypt
+  console.log('this.password:', this.password)
   bcrypt.hash(this.password, 16.5, (err, hash) => {
     // 2 ^ 16.5 ~ 92.k rounds of hashing
     if (err) {
@@ -37,6 +39,7 @@ UserSchema.pre('save', function(next) {
   });
 });
 
+// are executed on a mongoose document = instance of a model
 UserSchema.methods.isPasswordValid = function(passwordGuess) {
   return bcrypt.compare(passwordGuess, this.password);
 };
